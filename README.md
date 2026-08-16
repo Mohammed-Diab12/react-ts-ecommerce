@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -73,3 +74,21 @@ export default defineConfig([
 ])
 
 ```
+||||||| empty tree
+=======
+# React TS E-commerce
+
+A responsive e-commerce web app built with React, TypeScript, Material UI, and Firebase.
+
+## Technologies
+
+- React + Vite
+- TypeScript
+- Material UI
+- Firebase
+
+## Team
+
+- Mohammed Diab
+- Salsabeel Shomali
+>>>>>>> b9b1bc3f392a7994296d4b8b37e5140ad4e2329e
