@@ -19,10 +19,8 @@ export interface Product {
   thumbnail: string;
   title: string;
 }
-
 const products_Collections = "products";
 const productsCollection = collection(db, products_Collections);
-
 
 const mapDocToProduct = (docSnap: QueryDocumentSnapshot): Product => {
   const data = docSnap.data();
@@ -38,17 +36,13 @@ const mapDocToProduct = (docSnap: QueryDocumentSnapshot): Product => {
   };
 };
 
-
  // Fetch all products from the products collection
- 
 export const getAllProducts = async (): Promise<Product[]> => {
   const snapshot = await getDocs(productsCollection);
   return snapshot.docs.map(mapDocToProduct);
 };
 
-
  // Fetch products belonging to a single category
- 
 export const getProductsByCategory = async (
   category: Product["category"]
 ): Promise<Product[]> => {
@@ -60,9 +54,7 @@ export const getProductsByCategory = async (
   return snapshot.docs.map(mapDocToProduct);
 };
 
-
  // Fetch a single product by id, or null if it doesn't exist
- 
 export const getProductById = async (id: string): Promise<Product | null> => {
   const productRef = doc(db, products_Collections, id);
   const productSnap = await getDoc(productRef);
@@ -70,7 +62,6 @@ export const getProductById = async (id: string): Promise<Product | null> => {
   if (!productSnap.exists()) {
     return null;
   }
-
   const data = productSnap.data();
   return {
     id: productSnap.id,
