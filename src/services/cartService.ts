@@ -1,14 +1,14 @@
 import {
   collection,
   doc,
-  getDoc,
   getDocs,
-  setDoc,
   deleteDoc,
+  runTransaction,
   writeBatch,
   increment,
   QueryDocumentSnapshot,
-} from "firebase/firestore";
+}
+ from "firebase/firestore";
 import {
   getAuth,
   onAuthStateChanged,
@@ -77,18 +77,23 @@ export const addToCart = async (
   quantity = 1
 ): Promise<void> => {
   const itemRef = doc(getCartItemsCollection(cartId), product.productId);
-  const itemSnap = await getDoc(itemRef);
-
+  await runTransaction (db, async (transaction)=>{
+    const itemSnap = await transaction.get(itemRef);
+  
   if (itemSnap.exists()) {
-    await setDoc(itemRef, { quantity: increment(quantity) }, { merge: true });
+    transaction.update(itemRef, {
+      quantity: increment (quantity),
+    });
+  
     return;
   }
-  await setDoc(itemRef, {
+  transaction.set(itemRef, {
     title: product.title,
     price: product.price,
     thumbnail: product.thumbnail,
     quantity,
   });
+});
 };
 
 //Updates the cart item's quantity or removes it if the quantity is 0
@@ -102,7 +107,13 @@ export const updateCartItem = async (
     return;
   }
   const itemRef = doc(getCartItemsCollection(cartId), productId);
-  await setDoc(itemRef, { quantity }, { merge: true });
+  await runTransaction (db, async (transaction)=>{
+    const itemSnap = await transaction.get(itemRef);
+    if (!itemSnap.exists()){
+      throw new Error("Item not found in cart");
+    }
+    transaction.update(itemRef, {quantity});
+  });
 };
 
  // Remove a single item from the cart
