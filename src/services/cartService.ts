@@ -24,7 +24,6 @@ export interface CartItem {
   thumbnail: string;
   quantity: number;
 }
-const cartCollections = "carts";
 
 //The cart uses the user's Firebase UID, while Firebase Auth manages the session.
 const getCurrentUser = (): Promise<User> => {
@@ -51,7 +50,7 @@ export const getCartId = async (): Promise<string> => {
   return user.uid;
 };
 const getCartItemsCollection = (cartId: string) =>
-  collection(db, cartCollections, cartId, "items");
+  collection(db, "carts", cartId, "items");
 
 // Map a Firestore document to a CartItem
 const mapDocToCartItem = (docSnap: QueryDocumentSnapshot): CartItem => {
