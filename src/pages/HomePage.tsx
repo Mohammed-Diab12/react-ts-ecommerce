@@ -5,14 +5,11 @@ function HomePage() {
   return (
     <>
       <h1 style={{ textAlign: "center" }}>HomePage</h1>
-
       <ul>
         <li>
-          {" "}
           <Link to={"/cart"}>Cart Page</Link>
         </li>
         <li>
-          {" "}
           <Link to={"/product"}>Product Page</Link>
         </li>
       </ul>
