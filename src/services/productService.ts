@@ -16,14 +16,16 @@ const productsCollection = collection(db, products_Collections);
 const mapDocToProduct = (docSnap: QueryDocumentSnapshot): Product => {
   const data = docSnap.data();
   return {
-    id: docSnap.id,
+     id: docSnap.id,
     category: data.category,
+    title: data.title,
     description: data.description,
     images: data.images,
-    price: data.price,
-    stock: data.stock,
     thumbnail: data.thumbnail,
-    title: data.title,
+    price: data.price,
+    discountPercentage: data.discountPercentage,
+    stock: data.stock,
+    sku: data.sku,
   };
 };
 
@@ -53,15 +55,5 @@ export const getProductById = async (id: string): Promise<Product | null> => {
   if (!productSnap.exists()) {
     return null;
   }
-  const data = productSnap.data();
-  return {
-    id: productSnap.id,
-    category: data.category,
-    description: data.description,
-    images: data.images,
-    price: data.price,
-    stock: data.stock,
-    thumbnail: data.thumbnail,
-    title: data.title,
-  };
+ return mapDocToProduct(productSnap as QueryDocumentSnapshot);
 };
