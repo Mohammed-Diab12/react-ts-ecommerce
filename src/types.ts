@@ -1,6 +1,7 @@
 // Product
 export type ProductCategory =
-  | "Smartphone & Tablet"
+  | "Smartphone"
+  | "Tablet"
   | "Audio & Sound"
   | "Laptop";
 
@@ -12,8 +13,7 @@ export interface Product {
   images: string[];
   thumbnail: string;
   price: number;
-  // Original price before discount
-  oldPrice?: number;
+  discountPercentage?: number;
   stock: number;
   sku: string;
 }
