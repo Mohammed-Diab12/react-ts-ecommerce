@@ -7,8 +7,7 @@ import {
   writeBatch,
   increment,
   QueryDocumentSnapshot,
-}
- from "firebase/firestore";
+} from "firebase/firestore";
 import {
   getAuth,
   onAuthStateChanged,
@@ -16,14 +15,7 @@ import {
   type User,
 } from "firebase/auth";
 import { db } from "./firebase";
-
-export interface CartItem {
-  productId: string;
-  title: string;
-  price: number;
-  thumbnail: string;
-  quantity: number;
-}
+import type { CartItem } from "../types";
 
 //The cart uses the user's Firebase UID, while Firebase Auth manages the session.
 const getCurrentUser = (): Promise<User> => {
@@ -41,7 +33,7 @@ const getCurrentUser = (): Promise<User> => {
           .then((credential) => resolve(credential.user))
           .catch(reject);
       },
-      reject
+      reject,
     );
   });
 };
@@ -64,68 +56,68 @@ const mapDocToCartItem = (docSnap: QueryDocumentSnapshot): CartItem => {
   };
 };
 
- //Fetch all items currently in the cart
+//Fetch all items currently in the cart
 export const getCart = async (cartId: string): Promise<CartItem[]> => {
   const snapshot = await getDocs(getCartItemsCollection(cartId));
   return snapshot.docs.map(mapDocToCartItem);
 };
 
-  //Adds a product to the cart or increases its quantity if it already exists
+//Adds a product to the cart or increases its quantity if it already exists
 export const addToCart = async (
   cartId: string,
   product: Pick<CartItem, "productId" | "title" | "price" | "thumbnail">,
-  quantity = 1
+  quantity = 1,
 ): Promise<void> => {
   const itemRef = doc(getCartItemsCollection(cartId), product.productId);
-  await runTransaction (db, async (transaction)=>{
+  await runTransaction(db, async (transaction) => {
     const itemSnap = await transaction.get(itemRef);
-  
-  if (itemSnap.exists()) {
-    transaction.update(itemRef, {
-      quantity: increment (quantity),
+
+    if (itemSnap.exists()) {
+      transaction.update(itemRef, {
+        quantity: increment(quantity),
+      });
+
+      return;
+    }
+    transaction.set(itemRef, {
+      title: product.title,
+      price: product.price,
+      thumbnail: product.thumbnail,
+      quantity,
     });
-  
-    return;
-  }
-  transaction.set(itemRef, {
-    title: product.title,
-    price: product.price,
-    thumbnail: product.thumbnail,
-    quantity,
   });
-});
 };
 
 //Updates the cart item's quantity or removes it if the quantity is 0
 export const updateCartItem = async (
   cartId: string,
   productId: string,
-  quantity: number
+  quantity: number,
 ): Promise<void> => {
   if (quantity <= 0) {
     await removeFromCart(cartId, productId);
     return;
   }
   const itemRef = doc(getCartItemsCollection(cartId), productId);
-  await runTransaction (db, async (transaction)=>{
+  await runTransaction(db, async (transaction) => {
     const itemSnap = await transaction.get(itemRef);
-    if (!itemSnap.exists()){
+    if (!itemSnap.exists()) {
       throw new Error("Item not found in cart");
     }
-    transaction.update(itemRef, {quantity});
+    transaction.update(itemRef, { quantity });
   });
 };
 
- // Remove a single item from the cart
+// Remove a single item from the cart
 export const removeFromCart = async (
   cartId: string,
-  productId: string
+  productId: string,
 ): Promise<void> => {
   const itemRef = doc(getCartItemsCollection(cartId), productId);
   await deleteDoc(itemRef);
 };
 
- //Remove all items from the cart
+//Remove all items from the cart
 export const clearCart = async (cartId: string): Promise<void> => {
   const snapshot = await getDocs(getCartItemsCollection(cartId));
   const batch = writeBatch(db);
