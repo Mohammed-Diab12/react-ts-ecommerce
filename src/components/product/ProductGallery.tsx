@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Box, Stack } from "@mui/material";
-
+import { Box, Stack, Typography } from "@mui/material";
+import ImageNotSupportedOutlinedIcon from "@mui/icons-material/ImageNotSupportedOutlined";
 export interface ProductGalleryProps {
   images: string[];
   alt: string;
@@ -9,17 +9,37 @@ export interface ProductGalleryProps {
 export const ProductGallery = ({ images, alt }: ProductGalleryProps) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  if (images.length === 0) {
-    return null;
-  }
-
+  if (!images.length) {
+  return (
+    <Box
+      sx={{
+        width: 450,
+        height: 350,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        bgcolor: "grey.100",
+        borderRadius: 2,
+        border: "1px solid",
+        borderColor: "grey.300",
+        color: "text.secondary",
+      }}
+    >
+      <ImageNotSupportedOutlinedIcon sx={{ fontSize: 50, mb: 1 }} />
+      <Typography variant="body1">
+        No image available
+      </Typography>
+    </Box>
+  );
+}
   return (
     <Stack direction="row" spacing={2}>
       {/* Thumbnails */}
       <Stack spacing={1}>
         {images.map((src, index) => {
-        const isSelected = index === selectedIndex;
-            return(
+           const isSelected = index === selectedIndex;
+           return(
           <Box
             key={src}
             component="img"
@@ -32,7 +52,7 @@ export const ProductGallery = ({ images, alt }: ProductGalleryProps) => {
               objectFit: "cover",
               borderRadius: 1,
               cursor: "pointer",
-              border: "1px solid",
+              border: 1,
               borderColor: isSelected ? "common.black" : "grey.300",
             backgroundColor: isSelected ? "grey.100" : "grey.50",
 
@@ -41,9 +61,7 @@ export const ProductGallery = ({ images, alt }: ProductGalleryProps) => {
         );
 })}
       </Stack>
-
       {/* Main image */}
-
       <Box
         component="img"
         src={images[selectedIndex]}
@@ -57,7 +75,6 @@ export const ProductGallery = ({ images, alt }: ProductGalleryProps) => {
 
         }}
       />
-
     </Stack>
   );
 };

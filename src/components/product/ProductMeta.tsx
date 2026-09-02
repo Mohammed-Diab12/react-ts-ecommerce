@@ -4,7 +4,7 @@ import { Stack, Typography } from '@mui/material';
 export interface ProductMetaProps {
   product: Product;
 }
- 
+
  export const ProductMeta = ({ product }: ProductMetaProps) =>{
   return (
     <Stack spacing={3}>
