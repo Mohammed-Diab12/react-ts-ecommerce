@@ -10,8 +10,8 @@ function HomePage() {
           <Link to={"/cart"}>Cart Page</Link>
         </li>
         <li>
-          <Link to={"/product"}>Product Page</Link>
-        </li>
+      <Link to="/product/1phXjx94qtgXg9UkNHtc">Product Page</Link>    
+    </li>
       </ul>
     </>
   );
