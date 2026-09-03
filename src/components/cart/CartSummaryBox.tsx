@@ -3,7 +3,6 @@ import type { CartSummary } from "../../types";
 
 interface CartSummaryBoxProps {
   summary: CartSummary;
-  onCheckout: () => void;
 }
 
 const SummaryRow = ({ label, value }: { label: string; value: string }) => (
@@ -13,10 +12,10 @@ const SummaryRow = ({ label, value }: { label: string; value: string }) => (
   </Stack>
 );
 
-const CartSummaryBox = ({ summary, onCheckout }: CartSummaryBoxProps) => {
+const CartSummaryBox = ({ summary }: CartSummaryBoxProps) => {
   return (
-    <Paper variant="outlined" sx={{ p: 3 }}>
-      <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 1 }}>
+    <Paper variant="outlined" sx={{ p: 3, minWidth: 400 }}>
+      <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
         Summary
       </Typography>
       <Divider />
@@ -33,9 +32,14 @@ const CartSummaryBox = ({ summary, onCheckout }: CartSummaryBoxProps) => {
         <Button
           variant="contained"
           color="error"
-          fullWidth
-          onClick={onCheckout}
-          sx={{ py: 1.5, fontWeight: 700 }}
+          sx={{
+            py: 1.5,
+            mb: 3,
+            mt: 4,
+            fontWeight: 700,
+            wordSpacing: 4,
+            width: "50%",
+          }}
         >
           GO TO CHECKOUT
         </Button>
