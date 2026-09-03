@@ -12,6 +12,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import type { CartItem } from "../../types";
 import QuantityStepper from "./QuantityStepper";
+import { formatPrice } from "../cart/utils";
 
 interface CartTableProps {
   items: CartItem[];
@@ -48,12 +49,12 @@ function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
                   <Box>
                     <Typography variant="body2">{item.title}</Typography>
                     <Typography variant="body2" color="text.secondary">
-                      {`$${item.price}`}
+                      {formatPrice(item.price)}
                     </Typography>
                   </Box>
                 </Box>
               </TableCell>
-              <TableCell align="right">{`$${item.price}`}</TableCell>
+              <TableCell align="right">{formatPrice(item.price)}</TableCell>
               <TableCell align="center">
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <QuantityStepper
@@ -64,7 +65,9 @@ function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
                   />
                 </Box>
               </TableCell>
-              <TableCell align="right">{`$${item.price * item.quantity}`}</TableCell>
+              <TableCell align="right">
+                {formatPrice(item.price * item.quantity)}
+              </TableCell>
               <TableCell align="right">
                 <IconButton
                   size="small"

@@ -14,3 +14,6 @@ export const calculateCartSummary = (items: CartItem[]): CartSummary => {
     total: subtotal + shipping,
   };
 };
+export const formatPrice = (num: number): string => {
+  return `$${num.toFixed(2)}`;
+};

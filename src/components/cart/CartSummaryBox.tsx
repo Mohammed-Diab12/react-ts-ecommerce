@@ -1,5 +1,6 @@
 import { Box, Button, Divider, Paper, Stack, Typography } from "@mui/material";
 import type { CartSummary } from "../../types";
+import { formatPrice } from "../cart/utils";
 
 interface CartSummaryBoxProps {
   summary: CartSummary;
@@ -19,14 +20,14 @@ const CartSummaryBox = ({ summary }: CartSummaryBoxProps) => {
         Summary
       </Typography>
       <Divider />
-      <SummaryRow label="Subtotal" value={`$${summary.subtotal}`} />
+      <SummaryRow label="Subtotal" value={formatPrice(summary.subtotal)} />
       <Divider />
       <SummaryRow
         label="Shipping (Flat Rate - Fixed)"
-        value={`$${summary.shipping}`}
+        value={formatPrice(summary.shipping)}
       />
       <Divider />
-      <SummaryRow label="Order Total" value={`$${summary.total}`} />
+      <SummaryRow label="Order Total" value={formatPrice(summary.total)} />
 
       <Box sx={{ textAlign: "center", mt: 3 }}>
         <Button
