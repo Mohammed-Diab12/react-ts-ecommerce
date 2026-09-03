@@ -7,6 +7,7 @@ import type { Product as ProductType } from "../types";
 import { ProductGallery } from "../components/product/ProductGallery";
 import { ProductInfo } from "../components/product/ProductInfo";
 import { ProductMeta } from "../components/product/ProductMeta";
+import { ProductTabs } from "../components/product/ProductTabs";
 
 function Product() {
   const { id } = useParams<{ id: string }>();
@@ -72,6 +73,10 @@ function Product() {
       <ProductInfo product={product} />
       <ProductMeta product={product} />
     </Box>
+  </Box>
+  <Box sx={{ width: { xs: "100%", md: "70%" },
+    mx: "auto"}}>
+  <ProductTabs product={product} />
   </Box>
 </Container>
   );
