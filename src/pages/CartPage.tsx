@@ -1,15 +1,19 @@
-import { Box, Container, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Container, Typography, CircularProgress, Box } from "@mui/material";
+import { useCart } from "../context/CartContext";
+import { calculateCartSummary } from "../components/cart/utils";
+import CartTable from "../components/cart/CartTable";
+import CartSummaryBox from "../components/cart/CartSummaryBox";
+import type { CartItem } from "../types";
 
 function CartPage() {
+  const { items, loading, updateQuantity, removeItem } = useCart();
+
   return (
-    <Box>
-      <Container maxWidth="lg" sx={{ backgroundColor: "red" }}>
-        <Typography variant="h4" color="" sx={{ textAlign: "center" }}>
-          Shopping Cart
-        </Typography>
-      </Container>
-    </Box>
+    <Container sx={{ py: 6 }}>
+      <Typography variant="h4" align="center" sx={{ mb: 4 }}>
+        Shopping Cart
+      </Typography>
+    </Container>
   );
 }
 
