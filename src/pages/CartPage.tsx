@@ -25,26 +25,56 @@ function CartPage() {
   const summary = calculateCartSummary(items);
 
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Typography variant="h4" align="center" sx={{ mb: 4 }}>
+    <Container
+      maxWidth="lg"
+      sx={{
+        py: { xs: 3, sm: 4, md: 6 },
+        px: { xs: 2, sm: 3 },
+      }}
+    >
+      <Typography
+        variant="h4"
+        align="center"
+        sx={{
+          mb: { xs: 3, md: 4 },
+          fontSize: { xs: "1.8rem", sm: "2.125rem" },
+        }}
+      >
         Shopping Cart
       </Typography>
-      {items.length == 0 ? (
+
+      {items.length === 0 ? (
         <CartEmpty />
       ) : (
         <Stack
-          direction={{ xs: "column", md: "row" }}
-          spacing={4}
-          sx={{ alignItems: "flex-start" }}
+          direction={{ xs: "column", lg: "row" }}
+          spacing={{ xs: 3, lg: 4 }}
+          sx={{
+            width: "100%",
+            alignItems: "stretch",
+          }}
         >
-          <Box sx={{ flex: { md: 2 }, width: "90%" }}>
+          <Box
+            sx={{
+              flex: { lg: 2 },
+              width: "100%",
+              minWidth: 0,
+            }}
+          >
             <CartTable
               items={items}
               onQuantityChange={updateQuantity}
               onRemove={removeItem}
             />
           </Box>
-          <Box sx={{ flex: { md: 1 }, width: "90%" }}>
+
+          <Box
+            sx={{
+              flex: { lg: 1 },
+              width: "100%",
+              minWidth: 0,
+            }}
+          >
             <CartSummaryBox summary={summary} />
           </Box>
         </Stack>

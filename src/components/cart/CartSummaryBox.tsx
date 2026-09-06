@@ -15,8 +15,21 @@ const SummaryRow = ({ label, value }: { label: string; value: string }) => (
 
 const CartSummaryBox = ({ summary }: CartSummaryBoxProps) => {
   return (
-    <Paper variant="outlined" sx={{ p: 3, minWidth: 400 }}>
-      <Typography variant="subtitle1" sx={{ fontWeight: 600, mb: 2 }}>
+    <Paper
+      variant="outlined"
+      sx={{
+        p: { xs: 2, sm: 3 },
+        width: "100%",
+        boxSizing: "border-box",
+      }}
+    >
+      <Typography
+        variant="subtitle1"
+        sx={{
+          fontWeight: 600,
+          mb: 2,
+        }}
+      >
         Summary
       </Typography>
       <Divider />
@@ -28,23 +41,32 @@ const CartSummaryBox = ({ summary }: CartSummaryBoxProps) => {
       />
       <Divider />
       <SummaryRow label="Order Total" value={formatPrice(summary.total)} />
-
-      <Box sx={{ textAlign: "center", mt: 3 }}>
+      <Box
+        sx={{
+          textAlign: "center",
+          mt: 3,
+        }}
+      >
         <Button
           variant="contained"
           color="error"
           sx={{
             py: 1.5,
-            mb: 3,
-            mt: 4,
+            mt: 2,
+            mb: 2,
             fontWeight: 700,
-            wordSpacing: 4,
-            width: "50%",
+            wordSpacing: 2,
+            width: { xs: "100%", sm: "70%", md: "80%" },
           }}
         >
           GO TO CHECKOUT
         </Button>
-        <Typography sx={{ mt: 2, fontSize: 14 }}>
+        <Typography
+          sx={{
+            mt: 2,
+            fontSize: 14,
+          }}
+        >
           Check Out with Multiple Addresses
         </Typography>
       </Box>
