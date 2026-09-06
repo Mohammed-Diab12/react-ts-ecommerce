@@ -28,7 +28,7 @@ function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell sx={{ minWidth: 500 }}>Product Name</TableCell>
+            <TableCell sx={{ minWidth: 400 }}>Product Name</TableCell>
             <TableCell align="right">Price</TableCell>
             <TableCell align="center">Quantity</TableCell>
             <TableCell align="right">Total</TableCell>
@@ -58,6 +58,7 @@ function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
               <TableCell align="center">
                 <Box sx={{ display: "flex", justifyContent: "center" }}>
                   <QuantityStepper
+                    productId={item.productId}
                     value={item.quantity}
                     onChange={(newQuantity) =>
                       onQuantityChange(item.productId, newQuantity)
