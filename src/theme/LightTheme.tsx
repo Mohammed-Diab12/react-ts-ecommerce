@@ -8,10 +8,10 @@ export const lightThemeOptions: ThemeOptions = {
     },
     background: {
       default: "#ffffff",
-      paper: "#f9f9f9",
+      paper: "#f5f5f5",
     },
     secondary: {
-      main: "#f50057",
+      main: "#000",
     },
   
   },

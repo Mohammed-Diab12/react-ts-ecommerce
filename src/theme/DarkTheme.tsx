@@ -11,7 +11,7 @@ export const darkThemeOptions: ThemeOptions = {
       paper: "#1e1e1e",
     },
    secondary: {
-      main: "#dd3a736e",
+      main: "#fff",
     },
   },
   typography: {
