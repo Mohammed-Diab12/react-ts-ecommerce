@@ -18,15 +18,28 @@ function Product() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    if (!id) return;
+    if (!id) {
+      setLoading(false);
+      return;
+    }
 
     let isMounted = true;
+
     const fetchProduct = async () => {
       setLoading(true);
-      const result = await getProductById(id);
-      if (isMounted) {
-        setProduct(result);
-        setLoading(false);
+      try {
+        const result = await getProductById(id);
+        if (isMounted) {
+          setProduct(result);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setProduct(null);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
@@ -67,13 +80,17 @@ function Product() {
           <ProductGallery images={product.images} alt={product.title} />
         </Box>
 
-        <Box sx={{ flex: 1, gap:2, display: "flex", flexDirection: "column" }}>
+        <Box sx={{ flex: 1, gap: 2, display: "flex", flexDirection: "column" }}>
           <ProductInfo product={product} />
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 2, my: 2 }}>
-              <QuantityStepper value={quantity} onChange={setQuantity} />
-             <AddToCartActions product={product} quantity={quantity} />
-             <ProductSecondaryActions />
+            <QuantityStepper
+              productId={product.id}
+              value={quantity}
+              onChange={setQuantity}
+            />
+            <AddToCartActions product={product} quantity={quantity} />
+            <ProductSecondaryActions />
           </Box>
 
           <ProductMeta product={product} quantity={quantity} />
