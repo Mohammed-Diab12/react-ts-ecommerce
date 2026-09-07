@@ -53,6 +53,7 @@ const mapDocToCartItem = (docSnap: QueryDocumentSnapshot): CartItem => {
     price: data.price,
     thumbnail: data.thumbnail,
     quantity: data.quantity,
+    stock: data.stock,
   };
 };
 
@@ -65,7 +66,10 @@ export const getCart = async (cartId: string): Promise<CartItem[]> => {
 //Adds a product to the cart or increases its quantity if it already exists
 export const addToCart = async (
   cartId: string,
-  product: Pick<CartItem, "productId" | "title" | "price" | "thumbnail">,
+  product: Pick<
+    CartItem,
+    "productId" | "title" | "price" | "thumbnail" | "stock"
+  >,
   quantity = 1,
 ): Promise<void> => {
   const itemRef = doc(getCartItemsCollection(cartId), product.productId);
@@ -84,6 +88,7 @@ export const addToCart = async (
       price: product.price,
       thumbnail: product.thumbnail,
       quantity,
+      stock: product.stock,
     });
   });
 };

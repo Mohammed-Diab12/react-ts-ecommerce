@@ -25,6 +25,7 @@ export interface CartItem {
   price: number;
   thumbnail: string;
   quantity: number;
+  stock: number;
 }
 
 export interface CartSummary {

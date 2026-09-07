@@ -21,7 +21,6 @@ interface CartTableProps {
 }
 
 function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
-  console.log(items);
   return (
     <>
       <Divider />
@@ -105,7 +104,7 @@ function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
                     }}
                   >
                     <QuantityStepper
-                      productId={item.productId}
+                      maxQuantity={item.stock}
                       value={item.quantity}
                       onChange={(newQuantity) =>
                         onQuantityChange(item.productId, newQuantity)
