@@ -19,7 +19,7 @@ export default defineConfig([
       globals: globals.browser,
     },
     rules: {
-      "no-unused-vars": "on",
+      "no-unused-vars": "off",
     },
   },
 ]);

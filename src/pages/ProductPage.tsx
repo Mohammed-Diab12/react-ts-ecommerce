@@ -93,7 +93,7 @@ function Product() {
             <ProductSecondaryActions />
           </Box>
 
-          <ProductMeta product={product} quantity={quantity} />
+          <ProductMeta product={product}  />
         </Box>
       </Box>
 
