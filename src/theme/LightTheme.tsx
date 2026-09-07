@@ -6,6 +6,9 @@ export const lightThemeOptions: ThemeOptions = {
     primary: {
       main: "#ab1d2b",
     },
+    content: {
+      main: "#424242",
+    },
     background: {
       default: "#ffffff",
       paper: "#f5f5f5",
@@ -14,7 +17,8 @@ export const lightThemeOptions: ThemeOptions = {
       main: "#000",
     },
   
-  },
+  
+},
   typography: {
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
   },

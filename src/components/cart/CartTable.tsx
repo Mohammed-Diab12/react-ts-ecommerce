@@ -25,61 +25,119 @@ function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
   return (
     <>
       <Divider />
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell sx={{ minWidth: 500 }}>Product Name</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="center">Quantity</TableCell>
-            <TableCell align="right">Total</TableCell>
-            <TableCell />
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {items.map((item) => (
-            <TableRow key={item.productId}>
-              <TableCell sx={{ minWidth: 500 }}>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                  <Box
-                    component="img"
-                    src={item.thumbnail}
-                    alt={item.title}
-                    sx={{ width: 64, height: 64, objectFit: "cover" }}
-                  />
-                  <Box>
-                    <Typography variant="body2">{item.title}</Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {formatPrice(item.price)}
-                    </Typography>
-                  </Box>
-                </Box>
+      <Box
+        sx={{
+          width: "100%",
+          overflowX: "auto",
+        }}
+      >
+        <Table
+          sx={{
+            minWidth: { xs: 650, md: "100%" },
+            
+          }}
+        >
+          <TableHead>
+            <TableRow >
+              <TableCell sx={{ minWidth: { xs: 250, md: 300 },color:"content.main" }} >
+                Product Name
               </TableCell>
-              <TableCell align="right">{formatPrice(item.price)}</TableCell>
-              <TableCell align="center">
-                <Box sx={{ display: "flex", justifyContent: "center" }}>
-                  <QuantityStepper
-                    value={item.quantity}
-                    onChange={(newQuantity) =>
-                      onQuantityChange(item.productId, newQuantity)
-                    }
-                  />
-                </Box>
+
+              <TableCell align="right" sx={{ color: "content.main" }}>
+                Price
               </TableCell>
-              <TableCell align="right">
-                {formatPrice(item.price * item.quantity)}
+
+              <TableCell align="center" sx={{ color: "content.main" }}>
+                Quantity
               </TableCell>
-              <TableCell align="right">
-                <IconButton
-                  size="small"
-                  onClick={() => onRemove(item.productId)}
-                >
-                  <CloseIcon fontSize="small" />
-                </IconButton>
+
+              <TableCell align="right" sx={{ color: "content.main" }}>
+                Total
               </TableCell>
+
+              <TableCell />
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+
+          <TableBody>
+            {items.map((item) => (
+              <TableRow key={item.productId}>
+                <TableCell>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 2,
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={item.thumbnail}
+                      alt={item.title}
+                      sx={{
+                        width: 64,
+                        height: 64,
+                        objectFit: "cover",
+                        flexShrink: 0,
+                      }}
+                    />
+
+                    <Box sx={{ minWidth: 0, color: "content.main" }}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                          maxWidth: { xs: 180, sm: 250 },
+                        }}
+                      >
+                        {item.title}
+                      </Typography>
+
+                      <Typography variant="body2" color="text.secondary">
+                        {formatPrice(item.price)}
+                      </Typography>
+                    </Box>
+                  </Box>
+                </TableCell>
+
+                <TableCell align="right">{formatPrice(item.price)}</TableCell>
+
+                <TableCell align="center">
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <QuantityStepper
+                      productId={item.productId}
+                      value={item.quantity}
+                      onChange={(newQuantity) =>
+                        onQuantityChange(item.productId, newQuantity)
+                      }
+                    />
+                  </Box>
+                </TableCell>
+
+                <TableCell align="right">
+                  {formatPrice(item.price * item.quantity)}
+                </TableCell>
+
+                <TableCell align="right">
+                  <IconButton
+                    size="small"
+                    onClick={() => onRemove(item.productId)}
+                  >
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Box>
     </>
   );
 }
