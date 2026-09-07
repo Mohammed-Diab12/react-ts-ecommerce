@@ -28,6 +28,7 @@ export const ProductTabs = ({ product }: ProductTabsProps) => {
         }}
       >
       
+
         <Tab label="DETAILS" />
         <Tab label="MORE INFORMATION" />
         <Tab label="REVIEWS" />

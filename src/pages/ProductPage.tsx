@@ -94,6 +94,7 @@ function Product() {
           </Box>
 
           <ProductMeta product={product}  />
+
         </Box>
       </Box>
 

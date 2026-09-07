@@ -35,6 +35,7 @@ export const AddToCartActions = ({ product, quantity }: AddToCartActionsProps) =
       onClick={handleAddToCart}
       disabled={loading}
       sx={{ backgroundColor: "text.primary", color: "background.default", px: 2, "&:hover": { backgroundColor: "text.secondary" } }}
+
     >
       {loading ? "ADDING..." : "ADD TO CART"}
     </Button>
