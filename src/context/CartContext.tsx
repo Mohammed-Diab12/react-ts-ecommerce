@@ -62,6 +62,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     refresh();
   }, []);
 
+  useEffect(() => {
+    return () => {
+      Object.values(updateTimeouts.current).forEach(clearTimeout);
+      updateTimeouts.current = {};
+    };
+  }, []);
+
   const addItem: CartContextValue["addItem"] = async (
     product,
     quantity = 1,
