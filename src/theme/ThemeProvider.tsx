@@ -6,12 +6,18 @@ import { lightThemeOptions } from "../theme/LightTheme";
 import { darkThemeOptions } from "../theme/DarkTheme";
 
 export const AppThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [mode, setMode] = useState<ThemeMode>("light");
+  const [mode, setMode] = useState<ThemeMode>(()=>{
+   return (localStorage.getItem("theme") as ThemeMode) || "light";
+
+  });
 
   const toggleTheme = () => {
-    setMode((prev) => (prev === "light" ? "dark" : "light"));
-  };
-
+  setMode((prev) => {
+    const newMode = prev === "light" ? "dark" : "light";
+    localStorage.setItem("theme", newMode);
+    return newMode;
+  });
+};
   const theme = useMemo(
     () => createTheme(mode === "light" ? lightThemeOptions : darkThemeOptions),
     [mode],
