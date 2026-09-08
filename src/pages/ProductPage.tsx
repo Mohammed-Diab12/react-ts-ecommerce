@@ -85,7 +85,7 @@ function Product() {
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 2, my: 2 }}>
             <QuantityStepper
-              productId={product.id}
+              maxQuantity={product.stock}
               value={quantity}
               onChange={setQuantity}
             />

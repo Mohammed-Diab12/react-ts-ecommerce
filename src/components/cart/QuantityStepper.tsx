@@ -6,18 +6,25 @@ interface QuantityStepperProps {
   value: number;
   onChange: (newValue: number) => void;
   min?: number;
+  maxQuantity?: number;
 }
 
 const QuantityStepper = ({
   value,
   onChange,
   min = 1,
+  maxQuantity,
 }: QuantityStepperProps) => {
   const handleDecrease = () => {
-    onChange(value - 1);
+    if (value > min) {
+      onChange(value - 1);
+    }
   };
 
   const handleIncrease = () => {
+    if (maxQuantity !== undefined && value >= maxQuantity) {
+      return;
+    }
     onChange(value + 1);
   };
 
@@ -39,7 +46,11 @@ const QuantityStepper = ({
       <Typography sx={{ minWidth: 20, textAlign: "center" }}>
         {value}
       </Typography>
-      <IconButton size="small" onClick={handleIncrease}>
+      <IconButton
+        size="small"
+        onClick={handleIncrease}
+        disabled={maxQuantity !== undefined && value >= maxQuantity}
+      >
         <AddIcon fontSize="small" />
       </IconButton>
     </Stack>
