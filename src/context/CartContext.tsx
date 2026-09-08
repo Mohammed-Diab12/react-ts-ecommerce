@@ -5,6 +5,7 @@ import {
   useEffect,
   useCallback,
   useMemo,
+  useRef,
   type ReactNode,
 } from "react";
 import type { CartItem } from "../types";
@@ -22,10 +23,13 @@ interface CartContextValue {
   loading: boolean;
   itemCount: number;
   addItem: (
-    product: Pick<CartItem, "productId" | "title" | "price" | "thumbnail">,
+    product: Pick<
+      CartItem,
+      "productId" | "title" | "price" | "thumbnail" | "stock"
+    >,
     quantity?: number,
   ) => Promise<void>;
-  updateQuantity: (productId: string, quantity: number) => Promise<void>;
+  updateQuantity: (productId: string, quantity: number) => void;
   removeItem: (productId: string) => Promise<void>;
   clearAll: () => Promise<void>;
   refresh: () => Promise<void>;
@@ -37,25 +41,32 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartId, setCartId] = useState<string | null>(null);
   const [items, setItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const updateTimeouts = useRef<Record<string, ReturnType<typeof setTimeout>>>(
+    {},
+  );
+
+  const [initialized, setInitialized] = useState(false);
 
   const refresh = useCallback(async () => {
-    setLoading(true);
     const id = cartId ?? (await getCartId());
     if (!cartId) setCartId(id);
     const cartItems = await getCart(id);
     setItems(cartItems);
-    setLoading(false);
-  }, [cartId]);
-
-  // Resolve the cart on first mount
-  useEffect(() => {
-    (async () => {
-      const id = await getCartId();
-      setCartId(id);
-      const cartItems = await getCart(id);
-      setItems(cartItems);
+    if (!initialized) {
       setLoading(false);
-    })();
+      setInitialized(true);
+    }
+  }, [cartId, initialized]);
+
+  useEffect(() => {
+    refresh();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      Object.values(updateTimeouts.current).forEach(clearTimeout);
+      updateTimeouts.current = {};
+    };
   }, []);
 
   const addItem: CartContextValue["addItem"] = async (
@@ -67,7 +78,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     await refresh();
   };
 
-  const updateQuantity = async (productId: string, quantity: number) => {
+  const updateQuantity = (productId: string, quantity: number) => {
     if (!cartId) return;
     setItems((prev) =>
       prev
@@ -76,8 +87,19 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         )
         .filter((item) => item.quantity > 0),
     );
-    await updateCartItemService(cartId, productId, quantity);
-    await refresh();
+    if (updateTimeouts.current[productId]) {
+      clearTimeout(updateTimeouts.current[productId]);
+    }
+    updateTimeouts.current[productId] = setTimeout(async () => {
+      try {
+        await updateCartItemService(cartId, productId, quantity);
+      } catch (error) {
+        console.error("Failed to update cart quantity:", error);
+
+        await refresh();
+      }
+      delete updateTimeouts.current[productId];
+    }, 500);
   };
 
   const removeItem = async (productId: string) => {

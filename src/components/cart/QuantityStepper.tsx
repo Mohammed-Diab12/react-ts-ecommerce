@@ -9,6 +9,7 @@ interface QuantityStepperProps {
   value: number;
   onChange: (newValue: number) => void;
   min?: number;
+  maxQuantity?: number;
 }
 
 const QuantityStepper = ({
@@ -16,6 +17,7 @@ const QuantityStepper = ({
   value,
   onChange,
   min = 1,
+  maxQuantity,
 }: QuantityStepperProps) => {
   const [maxQuantity, setMaxQuantity] = useState<number | undefined>(undefined);
 
@@ -41,6 +43,9 @@ const QuantityStepper = ({
   };
 
   const handleIncrease = () => {
+    if (maxQuantity !== undefined && value >= maxQuantity) {
+      return;
+    }
     onChange(value + 1);
   };
 

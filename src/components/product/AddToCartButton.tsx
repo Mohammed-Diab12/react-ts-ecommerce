@@ -8,7 +8,10 @@ export interface AddToCartActionsProps {
   quantity: number;
 }
 
-export const AddToCartActions = ({ product, quantity }: AddToCartActionsProps) => {
+export const AddToCartActions = ({
+  product,
+  quantity,
+}: AddToCartActionsProps) => {
   const { addItem } = useCart();
   const [loading, setLoading] = useState(false);
 
@@ -23,6 +26,7 @@ export const AddToCartActions = ({ product, quantity }: AddToCartActionsProps) =
         title: product.title,
         price: finalPrice,
         thumbnail: product.thumbnail,
+        stock: product.stock,
       },
       quantity,
     );
@@ -34,8 +38,13 @@ export const AddToCartActions = ({ product, quantity }: AddToCartActionsProps) =
       variant="contained"
       onClick={handleAddToCart}
       disabled={loading}
-      sx={{ backgroundColor: "text.primary", color: "background.default", px: 2, "&:hover": { backgroundColor: "text.secondary" } }}
 
+      sx={{
+        backgroundColor: "text.primary",
+        color: "background.default",
+        px: 2,
+        "&:hover": { backgroundColor: "text.secondary" },
+      }}
     >
       {loading ? "ADDING..." : "ADD TO CART"}
     </Button>

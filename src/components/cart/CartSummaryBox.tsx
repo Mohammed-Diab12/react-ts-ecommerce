@@ -29,6 +29,7 @@ const CartSummaryBox = ({ summary }: CartSummaryBoxProps) => {
           fontWeight: 600,
           mb: 2,
           color: "content.main",
+
         }}
       >
         Summary

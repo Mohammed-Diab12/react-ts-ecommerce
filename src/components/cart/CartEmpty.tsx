@@ -34,5 +34,4 @@ const CartEmpty = () => {
     </Box>
   );
 };
-
 export default CartEmpty;

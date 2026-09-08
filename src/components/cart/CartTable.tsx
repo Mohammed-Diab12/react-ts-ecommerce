@@ -21,7 +21,6 @@ interface CartTableProps {
 }
 
 function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
-  console.log(items);
   return (
     <>
       <Divider />
@@ -33,8 +32,7 @@ function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
       >
         <Table
           sx={{
-            minWidth: { xs: 650, md: "100%" },
-            
+            minWidth: { xs: 650, md: "100%" }
           }}
         >
           <TableHead>
@@ -83,6 +81,7 @@ function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
                     />
 
                     <Box sx={{ minWidth: 0, color: "content.main" }}>
+
                       <Typography
                         variant="body2"
                         sx={{
@@ -112,7 +111,7 @@ function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
                     }}
                   >
                     <QuantityStepper
-                      productId={item.productId}
+                      maxQuantity={item.stock}
                       value={item.quantity}
                       onChange={(newQuantity) =>
                         onQuantityChange(item.productId, newQuantity)
