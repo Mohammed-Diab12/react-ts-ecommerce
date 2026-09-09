@@ -45,21 +45,34 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     {},
   );
 
-  const [initialized, setInitialized] = useState(false);
-
   const refresh = useCallback(async () => {
     const id = cartId ?? (await getCartId());
-    if (!cartId) setCartId(id);
+
+    if (!cartId) {
+      setCartId(id);
+    }
+
     const cartItems = await getCart(id);
     setItems(cartItems);
-    if (!initialized) {
-      setLoading(false);
-      setInitialized(true);
-    }
-  }, [cartId, initialized]);
+  }, [cartId]);
 
   useEffect(() => {
-    refresh();
+    const initializeCart = async () => {
+      try {
+        const id = cartId ?? (await getCartId());
+
+        if (!cartId) {
+          setCartId(id);
+        }
+
+        const cartItems = await getCart(id);
+        setItems(cartItems);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeCart();
   }, []);
 
   useEffect(() => {

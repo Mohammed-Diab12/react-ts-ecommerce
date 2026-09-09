@@ -1,11 +1,8 @@
-import { useState, useEffect } from "react";
 import { IconButton, Stack, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { getProductById } from "../../services/productService";
 
 interface QuantityStepperProps {
-  productId: string;
   value: number;
   onChange: (newValue: number) => void;
   min?: number;
@@ -13,29 +10,11 @@ interface QuantityStepperProps {
 }
 
 const QuantityStepper = ({
-  productId,
   value,
   onChange,
   min = 1,
   maxQuantity,
 }: QuantityStepperProps) => {
-  const [maxQuantity, setMaxQuantity] = useState<number | undefined>(undefined);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const fetchStock = async () => {
-      const product = await getProductById(productId);
-      if (isMounted) {
-        setMaxQuantity(product?.stock ?? 0);
-      }
-    };
-    fetchStock();
-    return () => {
-      isMounted = false;
-    };
-  }, [productId]);
-
   const handleDecrease = () => {
     if (value > min) {
       onChange(value - 1);
