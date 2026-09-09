@@ -38,8 +38,10 @@ export const AddToCartActions = ({
       variant="contained"
       onClick={handleAddToCart}
       disabled={loading}
+
       sx={{
-        backgroundColor: "black",
+        backgroundColor: "text.primary",
+        color: "background.default",
         px: 2,
         "&:hover": { backgroundColor: "text.secondary" },
       }}

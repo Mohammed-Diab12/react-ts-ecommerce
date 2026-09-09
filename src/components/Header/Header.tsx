@@ -1,7 +1,7 @@
-import React from "react";
+import { ThemeToggleButton } from "../themeToggleButton/ThemeToggleButton";
 
 function Header() {
-  return <div>Header</div>;
+  return <ThemeToggleButton />;
 }
 
 export default Header;

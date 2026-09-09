@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 function HomePage() {
@@ -10,7 +9,8 @@ function HomePage() {
           <Link to={"/cart"}>Cart Page</Link>
         </li>
         <li>
-      <Link to="/product/1phXjx94qtgXg9UkNHtc">Product Page</Link>    
+      <Link to="/products/1phXjx94qtgXg9UkNHtc">Product Page</Link>    
+
     </li>
       </ul>
     </>

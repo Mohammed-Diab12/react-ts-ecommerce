@@ -11,11 +11,24 @@ export const ProductTabs = ({ product }: ProductTabsProps) => {
 
   return (
     <Box>
-      <Tabs
+      <Tabs 
         value={activeTab}
         onChange={(_, newValue) => setActiveTab(newValue)}
         centered
+         sx={{
+          "& .MuiTab-root": {
+            color: "text.secondary",
+          },
+          "& .MuiTab-root.Mui-selected": {
+            color: "secondary.main",
+          },
+          "& .MuiTabs-indicator": {
+            backgroundColor: "secondary.main",
+          },
+        }}
       >
+      
+
         <Tab label="DETAILS" />
         <Tab label="MORE INFORMATION" />
         <Tab label="REVIEWS" />
