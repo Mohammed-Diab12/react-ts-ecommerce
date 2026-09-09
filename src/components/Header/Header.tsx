@@ -1,4 +1,5 @@
 import Navbar from "./Navbar";
+import { ThemeToggleButton } from "../themeToggleButton/ThemeToggleButton";
 import Typography from "@mui/material/Typography";
 
 function Header() {
@@ -7,6 +8,7 @@ function Header() {
       <Typography variant="h2" color="initial">
         Header
       </Typography>
+      <ThemeToggleButton />
       <Navbar />
     </>
   );

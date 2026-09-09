@@ -14,6 +14,7 @@ import { ProductSecondaryActions } from "../components/product/ProductSecondaryA
 function Product() {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<ProductType | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
 
@@ -27,14 +28,15 @@ function Product() {
 
     const fetchProduct = async () => {
       setLoading(true);
+      setError(null);
       try {
         const result = await getProductById(id);
         if (isMounted) {
           setProduct(result);
         }
-      } catch (error) {
+      } catch (err) {
         if (isMounted) {
-          setProduct(null);
+           setError("Failed to load product. Please try again.");
         }
       } finally {
         if (isMounted) {
@@ -57,11 +59,21 @@ function Product() {
       </Box>
     );
   }
-
+if (error) {
+  return (
+    <Container sx={{ py: 4 }}>
+      <Alert severity="error">
+        {error}
+      </Alert>
+    </Container>
+  );
+}
   if (!product) {
     return (
       <Container sx={{ py: 4 }}>
-        <Alert severity="error">Product not found</Alert>
+        <Alert severity="error">
+          Product not found
+          </Alert>
       </Container>
     );
   }
@@ -93,7 +105,8 @@ function Product() {
             <ProductSecondaryActions />
           </Box>
 
-          <ProductMeta product={product} quantity={quantity} />
+          <ProductMeta product={product}  />
+
         </Box>
       </Box>
 

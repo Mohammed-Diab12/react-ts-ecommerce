@@ -18,7 +18,9 @@ export const ProductInfo = ({ product }: ProductInfoProps) => {
       <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
         <Typography
           variant="h6"
-          sx={{ fontWeight: "bold", color: "#c0392b" }}
+
+          sx={{ fontWeight: "bold", color: "primary.main" }}
+
         >
           ${finalPrice.toFixed(2)}
         </Typography>
