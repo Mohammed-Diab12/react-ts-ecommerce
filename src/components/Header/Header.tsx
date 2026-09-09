@@ -1,7 +1,15 @@
-import React from "react";
+import Navbar from "./Navbar";
+import Typography from "@mui/material/Typography";
 
 function Header() {
-  return <div>Header</div>;
+  return (
+    <>
+      <Typography variant="h2" color="initial">
+        Header
+      </Typography>
+      <Navbar />
+    </>
+  );
 }
 
 export default Header;
