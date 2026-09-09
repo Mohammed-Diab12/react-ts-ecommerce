@@ -1,29 +1,9 @@
+import NewsletterForm from "./NewsletterForm";
 function Footer() {
   return (
-    <>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-      <div>Footer</div>
-    </>
+    <footer>
+      <NewsletterForm />
+    </footer>
   );
 }
 
