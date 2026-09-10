@@ -32,12 +32,14 @@ function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
       >
         <Table
           sx={{
-            minWidth: { xs: 650, md: "100%" }
+            minWidth: { xs: 650, md: "100%" },
           }}
         >
           <TableHead>
-            <TableRow >
-              <TableCell sx={{ minWidth: { xs: 250, md: 300 },color:"content.main" }} >
+            <TableRow>
+              <TableCell
+                sx={{ minWidth: { xs: 250, md: 300 }, color: "content.main" }}
+              >
                 Product Name
               </TableCell>
 
@@ -81,7 +83,6 @@ function CartTable({ items, onQuantityChange, onRemove }: CartTableProps) {
                     />
 
                     <Box sx={{ minWidth: 0, color: "content.main" }}>
-
                       <Typography
                         variant="body2"
                         sx={{
