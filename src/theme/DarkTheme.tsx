@@ -20,6 +20,9 @@ export const darkThemeOptions: ThemeOptions = {
     secondary: {
       main: "#fff",
     },
+     brand: {
+      main: "#D5DCE3",
+    },
   },
 
   typography: {
