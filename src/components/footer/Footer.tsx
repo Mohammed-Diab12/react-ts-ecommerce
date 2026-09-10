@@ -21,8 +21,8 @@ function Footer() {
           <SocialMedia />
           <Divider color="#696969" />
           <FooterLinks />
-          <FooterBottom />
         </Container>
+        <FooterBottom />
       </Box>
     </footer>
   );
