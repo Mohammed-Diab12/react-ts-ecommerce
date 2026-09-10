@@ -39,7 +39,7 @@ function NewsletterForm() {
           variant="outlined"
           value={inputvalue}
           sx={{
-            backgroundColor: "white",
+            backgroundColor: "background.default",
             minWidth: { xs: "100%", sm: "40%" },
           }}
           slotProps={{

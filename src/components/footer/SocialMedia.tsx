@@ -34,7 +34,7 @@ function SocialMedia() {
           <Typography variant="body2" sx={{ color: "#696969" }}>
             Our Office Address
           </Typography>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body1" color="initial" sx={{ fontWeight: 600 }}>
             169 Florida Ave, L.A City
           </Typography>
         </Stack>
@@ -42,7 +42,7 @@ function SocialMedia() {
           <Typography variant="body2" sx={{ color: "#696969" }}>
             Please call Us:
           </Typography>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body1" color="initial" sx={{ fontWeight: 600 }}>
             (+84) 1234 686 9669
           </Typography>
         </Stack>
@@ -56,22 +56,22 @@ function SocialMedia() {
         aria-label="social media links"
       >
         <IconButton sx={{ color: "white" }} aria-label="Facebook">
-          <Facebook />
+          <Facebook sx={{ fontSize: 30 }} />
         </IconButton>
         <IconButton sx={{ color: "white" }} aria-label="Twitter">
-          <Twitter />
+          <Twitter sx={{ fontSize: 30 }} />
         </IconButton>
         <IconButton sx={{ color: "white" }} aria-label="Pinterest">
-          <Pinterest />
+          <Pinterest sx={{ fontSize: 30 }} />
         </IconButton>
         <IconButton sx={{ color: "white" }} aria-label="Google">
-          <Google />
+          <Google sx={{ fontSize: 30 }} />
         </IconButton>
         <IconButton sx={{ color: "white" }} aria-label="Instagram">
-          <Instagram />
+          <Instagram sx={{ fontSize: 30 }} />
         </IconButton>
         <IconButton sx={{ color: "white" }} aria-label="RssFeed">
-          <RssFeed />
+          <RssFeed sx={{ fontSize: 30 }} />
         </IconButton>
       </Box>
     </Box>

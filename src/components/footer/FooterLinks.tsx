@@ -3,12 +3,19 @@ import { Typography, Stack, Box } from "@mui/material";
 const linksColumn = (title: string, links: string[]) => {
   return (
     <div>
-      <Typography variant="h5" sx={{ mb: 3.5 }}>
+      <Typography variant="h5" sx={{ mb: 3.5, fontWeight: 600 }}>
         {title}
       </Typography>
       <Stack spacing={1} sx={{ mt: 1 }}>
         {links.map((link, index) => (
-          <Typography key={index} variant="body2" sx={{ color: "#767676" }}>
+          <Typography
+            key={index}
+            variant="body2"
+            sx={{
+              color: title === "Our Stores" ? "#5c5c5c" : "#767676",
+              pb: title === "Our Stores" ? 1.5 : 0,
+            }}
+          >
             {link}
           </Typography>
         ))}
