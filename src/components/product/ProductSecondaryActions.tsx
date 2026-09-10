@@ -6,19 +6,13 @@ export const ProductSecondaryActions = () => {
   return (
     <Stack direction="row" spacing={1}>
       <IconButton
-        sx={{ border: "1px solid",
-             borderColor: "divider",
-              borderRadius: 1
-            }}
+        sx={{ border: "1px solid", borderColor: "divider", borderRadius: 1 }}
       >
         <FavoriteBorderIcon fontSize="small" />
       </IconButton>
 
       <IconButton
-        sx={{ border: "1px solid",
-             borderColor: "divider",
-              borderRadius: 1
-            }}
+        sx={{ border: "1px solid", borderColor: "divider", borderRadius: 1 }}
       >
         <CompareArrowsIcon fontSize="small" />
       </IconButton>

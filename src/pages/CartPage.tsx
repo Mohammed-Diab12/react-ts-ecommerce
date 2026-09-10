@@ -26,7 +26,7 @@ function CartPage() {
 
   return (
     <Container
-      maxWidth="xl"
+      maxWidth="lg"
       sx={{
         py: { xs: 3, sm: 4, md: 6 },
         px: { xs: 2, sm: 3 },
