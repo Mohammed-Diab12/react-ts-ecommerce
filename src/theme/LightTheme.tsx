@@ -16,6 +16,9 @@ export const lightThemeOptions: ThemeOptions = {
     secondary: {
       main: "#000",
     },
+    brand: {
+      main: "#1C242E",
+    },
   
   
 },
