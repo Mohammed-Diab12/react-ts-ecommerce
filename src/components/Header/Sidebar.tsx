@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Drawer,
   Box,
@@ -27,12 +27,18 @@ const pages = [
 function Sidebar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const themeBoxRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => setOpen((prev) => !prev);
 
   const handleNavigate = (path: string) => {
     navigate(path);
     setOpen(false);
+  };
+
+  const handleThemeRowClick = () => {
+    const button = themeBoxRef.current?.querySelector("button");
+    button?.click();
   };
 
   return (
@@ -79,10 +85,21 @@ function Sidebar() {
           <Divider />
 
           {/* Theme toggle row */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1, px: 2, py: 1.5 }}>
+          <Box
+            ref={themeBoxRef}
+            onClick={handleThemeRowClick}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              px: 2,
+              py: 1.5,
+              cursor: "pointer",
+            }}
+          >
             <ThemeToggleButton />
             <Typography variant="body2">Theme</Typography>
-            </Box>
+          </Box>
 
           {/* Header actions, stacked vertically */}
           <Stack spacing={0.5} sx={{ px: 2, py: 1.5, flexGrow: 1 }}>
