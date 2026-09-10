@@ -13,7 +13,6 @@ function Footer() {
           flexDirection: "column",
           mt: 2,
           backgroundColor: "#252525",
-          p: 2,
           my: 0,
         }}
       >
@@ -21,8 +20,9 @@ function Footer() {
           <SocialMedia />
           <Divider color="#696969" />
           <FooterLinks />
-          <FooterBottom />
-        </Container>
+        </Container> 
+        <FooterBottom />
+
       </Box>
     </footer>
   );
