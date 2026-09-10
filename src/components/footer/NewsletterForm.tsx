@@ -10,7 +10,7 @@ function NewsletterForm() {
     setInputValue("");
   };
   return (
-    <Paper sx={{ textAlign: "center", py: 4 }}>
+    <Paper sx={{ textAlign: "center", py: 4, pb: 5 }}>
       <Typography variant="h5" sx={{ fontWeight: 700 }}>
         NewsLetter
       </Typography>
