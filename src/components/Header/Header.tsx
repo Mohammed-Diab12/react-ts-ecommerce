@@ -1,16 +1,52 @@
-import Navbar from "./Navbar";
 import { ThemeToggleButton } from "../themeToggleButton/ThemeToggleButton";
-import Typography from "@mui/material/Typography";
+import { Container, Stack, Typography, Box } from "@mui/material";
+import { HeaderActions } from "../headerAction/HeaderAction";
+import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 
 function Header() {
   return (
-    <>
-      <Typography variant="h2" color="initial">
-        Header
-      </Typography>
-      <ThemeToggleButton />
+    <Box sx={{ width: "100%", bgcolor: "background.default" }}>
+      <Container>
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{
+            justifyContent: "space-between",
+            alignItems: "center",
+            py: 1,
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <Sidebar />
+            <Typography
+              variant="h2"
+              sx={{
+                fontWeight: 600,
+                fontSize: "1.9rem",
+                color: "brand.main",
+              }}
+            >
+              CAMARO
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              flexDirection: "row",
+              alignItems: "center",
+              gap: 2,
+            }}
+          >
+            <ThemeToggleButton />
+            <HeaderActions />
+          </Box>
+        </Stack>
+      </Container>
+
       <Navbar />
-    </>
+    </Box>
   );
 }
 
