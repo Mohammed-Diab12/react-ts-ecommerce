@@ -1,5 +1,5 @@
 import NewsletterForm from "./NewsletterForm";
-import { Box, Divider } from "@mui/material";
+import { Box, Divider, Container } from "@mui/material";
 import SocialMedia from "./SocialMedia";
 import FooterLinks from "./FooterLinks";
 import FooterBottom from "./FooterBottom";
@@ -17,10 +17,12 @@ function Footer() {
           my: 0,
         }}
       >
-        <SocialMedia />
-        <Divider color="#696969" />
-        <FooterLinks />
-        <FooterBottom />
+        <Container maxWidth="lg">
+          <SocialMedia />
+          <Divider color="#696969" />
+          <FooterLinks />
+          <FooterBottom />
+        </Container>
       </Box>
     </footer>
   );
