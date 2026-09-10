@@ -13,7 +13,6 @@ function Footer() {
           flexDirection: "column",
           mt: 2,
           backgroundColor: "#252525",
-          p: 2,
           my: 0,
         }}
       >
