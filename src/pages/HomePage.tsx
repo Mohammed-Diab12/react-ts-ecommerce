@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import PromoBanner from "../components/Home/PromoBanner";
+import MobileDevicesCategory from "../components/Home/category/MobileDevicesCategory";
 import { Container } from "@mui/material";
 
 function HomePage() {
+  
   return (
 <Container>  
       <h1 style={{ textAlign: "center" }}>HomePage</h1>
@@ -15,6 +17,7 @@ function HomePage() {
 
     </li>
       </ul>
+      <MobileDevicesCategory/>
       <PromoBanner/>
     </Container>
   );

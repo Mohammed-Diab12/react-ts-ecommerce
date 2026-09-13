@@ -47,6 +47,18 @@ export const getProductsByCategory = async (
   return snapshot.docs.map(mapDocToProduct);
 };
 
+// Fetch products belonging to multiple categories
+export const getProductsByCategories = async (
+  categories: Product["category"][],
+): Promise<Product[]> => {
+  const productsQuery = query(
+    productsCollection,
+    where("category", "in", categories),
+  );
+  const snapshot = await getDocs(productsQuery);
+  return snapshot.docs.map(mapDocToProduct);
+};
+
 // Fetch a single product by id, or null if it doesn't exist
 export const getProductById = async (id: string): Promise<Product | null> => {
   const productRef = doc(db, products_Collections, id);
