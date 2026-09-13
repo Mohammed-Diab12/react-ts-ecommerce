@@ -18,7 +18,7 @@ function ProductCard({
 }: ProductProps) {
   const hasDiscount = !!discountPercentage && discountPercentage > 0;
   const discountedPrice = hasDiscount
-    ? price - (price * discountPercentage!) / 100
+    ? price - (price * discountPercentage) / 100
     : price;
   const formattedPrice = formatPrice(discountedPrice);
   const formattedOriginalPrice = formatPrice(price);
