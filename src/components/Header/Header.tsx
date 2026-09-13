@@ -6,7 +6,15 @@ import Sidebar from "./Sidebar";
 
 function Header() {
   return (
-    <Box sx={{ width: "100%", bgcolor: "background.default", position: "sticky", top: 0, zIndex: 1000 }}>
+    <Box
+      sx={{
+        width: "100%",
+        bgcolor: "background.default",
+        position: "sticky",
+        top: 0,
+        zIndex: 1000,
+      }}
+    >
       <Container>
         <Stack
           direction="row"
