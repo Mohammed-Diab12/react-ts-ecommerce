@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import PromoBanner from "../components/promoBanner/PromoBanner";
+import PromoBanner from "../components/Home/PromoBanner";
 import { Container } from "@mui/material";
 
 function HomePage() {
