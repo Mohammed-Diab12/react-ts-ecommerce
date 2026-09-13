@@ -7,7 +7,6 @@ const CATEGORY_TITLE = "Smartphone & Tablet";
 const CATEGORIES: Product["category"][] = ["Smartphone", "Tablet"];
 const CARD_WIDTH = 180;
 const CARD_GAP = 10;
-
 function MobileDevicesCategory() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
