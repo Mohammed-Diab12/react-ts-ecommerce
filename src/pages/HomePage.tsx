@@ -11,9 +11,8 @@ function HomePage() {
           <Link to={"/cart"}>Cart Page</Link>
         </li>
         <li>
-      <Link to="/products/1phXjx94qtgXg9UkNHtc">Product Page</Link>    
-
-    </li>
+          <Link to="/products/1phXjx94qtgXg9UkNHtc">Product Page</Link>
+        </li>
       </ul>
       <PromoBanner/>
     </Container>
