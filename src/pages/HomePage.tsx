@@ -17,10 +17,9 @@ function HomePage() {
         </li>
       </ul>
 
-
       <MobileDevicesCategory />
-      <BrandStrip />
       <PromoBanner />
+      <BrandStrip />
     </Container>
   );
 }
