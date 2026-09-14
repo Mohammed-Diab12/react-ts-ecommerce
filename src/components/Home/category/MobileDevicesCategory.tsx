@@ -1,6 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import {Box, Typography, IconButton, Stack, CircularProgress,} from "@mui/material";
+import {
+  Box,
+  Typography,
+  IconButton,
+  Stack,
+  CircularProgress,
+  Divider,
+  Container,
+} from "@mui/material";
 import { getProductsByCategories } from "../../../services/productService";
+import ProductCard from "../ProductCard";
 import type { Product } from "../../../types";
 
 const CATEGORY_TITLE = "Smartphone & Tablet";
@@ -33,46 +42,52 @@ function MobileDevicesCategory() {
   }, []);
 
   const recalculatePageCount = useCallback(() => {
-    const el = scrollRef.current;
+    const container = scrollRef.current;
 
-    if (!el || el.clientWidth === 0) return;
+    if (!container || container.clientWidth === 0) return;
 
-    const newPageCount = Math.max(1, Math.ceil(el.scrollWidth / el.clientWidth));
+    const newPageCount = Math.max(
+      1,
+      Math.ceil(container.scrollWidth / container.clientWidth),
+    );
 
     setPageCount(newPageCount);
     setActiveDot((currentIndex) => Math.min(currentIndex, newPageCount - 1));
   }, []);
 
   useEffect(() => {
-    const el = scrollRef.current;
+    const container = scrollRef.current;
 
-    if (!el) return;
+    if (!container) return;
 
     recalculatePageCount();
 
     const resizeObserver = new ResizeObserver(recalculatePageCount);
-    resizeObserver.observe(el);
+    resizeObserver.observe(container);
 
     return () => {
       resizeObserver.disconnect();
     };
-  }, [recalculatePageCount]);
+  }, [recalculatePageCount, products]);
 
   const handleScroll = useCallback(() => {
-    const el = scrollRef.current;
+    const container = scrollRef.current;
 
-    if (!el || el.clientWidth === 0) return;
+    if (!container || container.clientWidth === 0) return;
 
-    const index = Math.round(el.scrollLeft / el.clientWidth);
+    const index = Math.round(container.scrollLeft / container.clientWidth);
     setActiveDot(index);
   }, []);
 
   const scrollToPage = useCallback((index: number) => {
-    const el = scrollRef.current;
+    const container = scrollRef.current;
 
-    if (!el) return;
+    if (!container) return;
 
-    el.scrollTo({ left: index * el.clientWidth, behavior: "smooth" });
+    container.scrollTo({
+      left: index * container.clientWidth,
+      behavior: "smooth",
+    });
   }, []);
 
   if (loading) {
@@ -98,7 +113,7 @@ function MobileDevicesCategory() {
   }
 
   return (
-    <Box sx={{ width: "100%", py: 3 }}>
+    <Container maxWidth="lg">
       <Box sx={{ mb: 2 }}>
         <Typography variant="h6" sx={{ fontWeight: 600 }}>
           {CATEGORY_TITLE}
@@ -129,33 +144,27 @@ function MobileDevicesCategory() {
               minWidth: CARD_WIDTH,
               flex: "0 0 auto",
               display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              p: 1,
-              border: "1px dashed",
-              borderColor: "divider",
             }}
           >
-            {/* Temporary product card */}
-            <Box
-              component="img"
-              src={product.thumbnail}
-              alt={product.title}
-              sx={{ width: "100%", height: 140, objectFit: "contain", mb: 1 }}
+            <ProductCard
+              id={product.id}
+              category={product.category}
+              thumbnail={product.thumbnail}
+              title={product.title}
+              price={product.price}
+              discountPercentage={product.discountPercentage}
             />
-
-            <Typography variant="body2">{product.title}</Typography>
-
-            <Typography variant="body2" sx={{ color: "error.main" }}>
-              ${product.price}
-            </Typography>
+            <Divider orientation="vertical" flexItem sx={{ height: "60%" }} />
           </Box>
         ))}
       </Box>
 
       {pageCount > 1 && (
-        <Stack direction="row" spacing={1} sx={{ justifyContent: "center", mt: 2 }}>
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{ justifyContent: "center", mt: 2 }}
+        >
           {Array.from({ length: pageCount }).map((_, index) => (
             <IconButton
               key={index}
@@ -178,7 +187,7 @@ function MobileDevicesCategory() {
           ))}
         </Stack>
       )}
-    </Box>
+    </Container>
   );
 }
 
