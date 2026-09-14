@@ -24,7 +24,7 @@ export const ThemeToggleButton = () => {
       <Typography
         variant="body2"
         sx={{
-          display: { xs: "block", sm: "none" },
+          display: { xs: "block", md: "none" },
         }}
       >
         Theme
