@@ -1,11 +1,11 @@
-import {Box, Typography, Button } from "@mui/material";
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import { Box, Typography, Button } from "@mui/material";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 function PromoBanner() {
   return (
-      <Box
-        sx={{
-          alignItems: "stretch",
-          maxWidth: "100%",
+    <Box
+      sx={{
+        alignItems: "stretch",
+        maxWidth: "100%",
         mx: "auto",
         my: 5,
         overflow: "hidden",
@@ -13,7 +13,6 @@ function PromoBanner() {
         display: { xs: "none", md: "flex" },
       }}
     >
-     
       <Typography
         sx={{
           flex: 1,
@@ -27,13 +26,16 @@ function PromoBanner() {
           justifyContent: "center",
         }}
       >
-        Save your moneys with super promotion, available every Sunday in the weekend!
+        Save your money with super promotion, available every Sunday in the
+        weekend!
       </Typography>
       <Button
-        endIcon={<ArrowRightAltIcon sx={{ transition: "transform 0.2s ease" }} />}
+        endIcon={
+          <ArrowRightAltIcon sx={{ transition: "transform 0.2s ease" }} />
+        }
         sx={{
-       px: 7,
-          color: "background.paper",
+          px: 7,
+          color: "white",
           bgcolor: "primary.main",
           fontSize: "0.60rem",
           fontWeight: 300,
