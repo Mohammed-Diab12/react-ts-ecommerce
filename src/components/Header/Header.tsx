@@ -30,7 +30,7 @@ function Header() {
             <Typography
               variant="h2"
               sx={{
-                fontWeight: 600,
+                fontWeight: 800,
                 fontSize: "1.9rem",
                 color: "brand.main",
               }}
