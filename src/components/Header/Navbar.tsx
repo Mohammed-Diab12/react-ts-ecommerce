@@ -4,6 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../services/authServices";
 
 const pages = [
   { name: "HOME", path: "/" },
@@ -16,22 +17,29 @@ const pages = [
 function Navbar() {
   const navigate = useNavigate();
 
-  return (
-    <AppBar position="sticky"
-      color="transparent"
-     sx={{ top: 0,
-       zIndex: 1000,
-        bgcolor: { xs: "transparent", md: "brand.main" },
-        boxShadow: { xs: "none", md: undefined }, }}>
-        <Toolbar disableGutters>
-          <Container>
-            <Box 
-            sx={{ flexGrow: 1,
-             display: { xs: "none", md: "flex"
-              } 
-              }}>
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
-              {pages.map((page) => (
+  return (
+    <AppBar
+      position="sticky"
+      color="transparent"
+      sx={{
+        top: 0,
+        zIndex: 1000,
+        bgcolor: { xs: "transparent", md: "brand.main" },
+        boxShadow: { xs: "none", md: undefined },
+      }}
+    >
+      <Toolbar disableGutters>
+        <Container>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {pages.map((page) => (
               <Button
                 key={page.name}
                 onClick={() => navigate(page.path)}
@@ -45,9 +53,10 @@ function Navbar() {
                 {page.name}
               </Button>
             ))}
+            <Button onClick={handleLogout}>Logout</Button>
           </Box>
-          </Container>
-        </Toolbar>
+        </Container>
+      </Toolbar>
     </AppBar>
   );
 }
