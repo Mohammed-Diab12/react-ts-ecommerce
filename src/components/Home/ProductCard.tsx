@@ -1,7 +1,7 @@
 import { Link as RouterLink } from "react-router-dom";
 import type { Product } from "../../types";
 import { formatPrice } from "../cart/utils";
-import { Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
+import { CardContent, CardMedia, Typography, Box } from "@mui/material";
 
 type ProductProps = Pick<
   Product,
@@ -26,9 +26,9 @@ function ProductCard({
   const isHorizontal = category === "Laptop";
 
   return (
-    <Card
+    <Box
       component={RouterLink}
-      to={`/product/${id}`}
+      to={`/products/${id}`}
       sx={{
         position: "relative",
         display: "flex",
@@ -39,6 +39,7 @@ function ProductCard({
         color: "inherit",
         p: isHorizontal ? 1 : 0,
         gap: isHorizontal ? 2 : 0,
+        border: "none",
       }}
     >
       {hasDiscount && (
@@ -106,7 +107,7 @@ function ProductCard({
           )}
         </Box>
       </CardContent>
-    </Card>
+    </Box>
   );
 }
 
