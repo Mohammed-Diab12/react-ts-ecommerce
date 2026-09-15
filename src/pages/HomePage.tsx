@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import MobileDevicesCategory from "../components/Home/category/MobileDevicesCategory";
+import MobileDevicesCategory from "../components/Home/category/ProductCategoryCarousel";
 import PromoBanner from "../components/Home/PromoBanner";
 import BrandStrip from "../components/Home/BrandStrip";
 import { Container } from "@mui/material";
@@ -17,7 +17,10 @@ function HomePage() {
         </li>
       </ul>
 
-      <MobileDevicesCategory />
+      <MobileDevicesCategory
+        categoryTitle="Smartphone & Tablet"
+        categories={["Smartphone", "Tablet"]}
+      />
       <PromoBanner />
       <BrandStrip />
     </Container>
