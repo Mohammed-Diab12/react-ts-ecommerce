@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../services/authServices";
+import { useAuth } from "../../context/AuthContext";
 import { useState } from "react";
 
 const pages = [
@@ -21,6 +22,7 @@ const pages = [
   { name: "LOOKBOOK", path: "/cart" },
   { name: "BRANDS", path: "/cart" },
 ];
+
 const settings = [
   { name: "Profile", path: "/profile" },
   { name: "Logout", action: "logout" as const },
@@ -28,6 +30,7 @@ const settings = [
 
 function Navbar() {
   const navigate = useNavigate();
+  const { user, isAuthenticated, loading } = useAuth();
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -87,38 +90,55 @@ function Navbar() {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem
-                  key={setting.name}
-                  onClick={() => handleSettingClick(setting)}
+            {loading ? null : isAuthenticated ? (
+              <>
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      alt={user?.displayName ?? "User"}
+                      src={user?.photoURL ?? undefined}
+                    />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
                 >
-                  <Typography sx={{ textAlign: "center" }}>
-                    {setting.name}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+                  {settings.map((setting) => (
+                    <MenuItem
+                      key={setting.name}
+                      onClick={() => handleSettingClick(setting)}
+                    >
+                      <Typography sx={{ textAlign: "center" }}>
+                        {setting.name}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </>
+            ) : (
+              <Button
+                onClick={() => navigate("/login")}
+                sx={{
+                  color: "background.paper",
+                  fontWeight: 600,
+                }}
+              >
+                LOGIN
+              </Button>
+            )}
           </Box>
         </Container>
       </Toolbar>
