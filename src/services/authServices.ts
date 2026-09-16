@@ -14,5 +14,6 @@ export const signInWithGithub = async () => {
 };
 
 export const logout = async () => {
+  console.log("Logging out...");
   await signOut(auth);
 };

@@ -28,7 +28,7 @@ function ProductCard({
   return (
     <Card
       component={RouterLink}
-      to={`/product/${id}`}
+      to={`/products/${id}`}
       sx={{
         position: "relative",
         display: "flex",
