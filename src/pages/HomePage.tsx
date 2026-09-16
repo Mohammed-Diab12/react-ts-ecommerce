@@ -1,25 +1,61 @@
-import { Link } from "react-router-dom";
-import MobileDevicesCategory from "../components/Home/category/MobileDevicesCategory";
+import ProductCategoryCarousel from "../components/Home/category/ProductCategoryCarousel";
+import bluetoothSpeaker from "../../public/bluetoothSpeaker.jpg";
 import PromoBanner from "../components/Home/PromoBanner";
 import BrandStrip from "../components/Home/BrandStrip";
-import { Container } from "@mui/material";
+import { Container, Box } from "@mui/material";
+import type { Product } from "../types";
+
+const SMARTPHONE_TABLET_CATEGORIES: Product["category"][] = [
+  "Smartphone",
+  "Tablet",
+];
+const AUDIO_SOUND_CATEGORIES: Product["category"][] = ["Audio & Sound"];
+const LAPTOP_CATEGORIES: Product["category"][] = ["Laptop"];
 
 function HomePage() {
   return (
-    <Container>
-      <h1 style={{ textAlign: "center" }}>HomePage</h1>
-      <ul>
-        <li>
-          <Link to={"/cart"}>Cart Page</Link>
-        </li>
-        <li>
-          <Link to="/products/1phXjx94qtgXg9UkNHtc">Product Page</Link>
-        </li>
-      </ul>
+    <Container sx={{ display: "flex", gap: 3, flexDirection: "column" }}>
+      <ProductCategoryCarousel
+        categoryTitle="Smartphone & Tablet"
+        categories={SMARTPHONE_TABLET_CATEGORIES}
+      />
 
-      <MobileDevicesCategory />
-      <BrandStrip />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          width: "100%",
+          alignItems: "center",
+          gap:1
+        }}
+      >
+        <Box sx={{ flex: 1, minWidth: 0, width: "100%" }}>
+          <ProductCategoryCarousel
+            categoryTitle="Audio & Sound"
+            categories={AUDIO_SOUND_CATEGORIES}
+          />
+        </Box>
+
+        <Box
+          component="img"
+          src={bluetoothSpeaker}
+          alt="Bluetooth Speaker"
+          sx={{
+            width: { xs: "70%", md: 250 },
+            maxWidth: 250,
+            objectFit: "contain",
+          }}
+        />
+      </Box>
+
+      <ProductCategoryCarousel
+        categoryTitle="Laptop"
+        categories={LAPTOP_CATEGORIES}
+        rows={2}
+      />
+
       <PromoBanner />
+      <BrandStrip />
     </Container>
   );
 }

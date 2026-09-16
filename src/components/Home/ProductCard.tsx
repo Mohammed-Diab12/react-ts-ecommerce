@@ -1,7 +1,7 @@
 import { Link as RouterLink } from "react-router-dom";
 import type { Product } from "../../types";
 import { formatPrice } from "../cart/utils";
-import { Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
+import { CardContent, CardMedia, Typography, Box } from "@mui/material";
 
 type ProductProps = Pick<
   Product,
@@ -26,19 +26,23 @@ function ProductCard({
   const isHorizontal = category === "Laptop";
 
   return (
-    <Card
+    <Box
       component={RouterLink}
-      to={`/product/${id}`}
+      to={`/products/${id}`}
       sx={{
         position: "relative",
         display: "flex",
         flexDirection: isHorizontal ? "row" : "column",
         alignItems: isHorizontal ? "center" : "stretch",
-        backgroundColor: "background.default",
+        backgroundColor: "background.paper",
         textDecoration: "none",
         color: "inherit",
         p: isHorizontal ? 1 : 0,
         gap: isHorizontal ? 2 : 0,
+        border: "none",
+        width: "100%",
+        height: "100%",
+        boxSizing: "border-box",
       }}
     >
       {hasDiscount && (
@@ -83,7 +87,12 @@ function ProductCard({
           "&:last-child": { pb: isHorizontal ? 0 : undefined },
         }}
       >
-        <Typography variant="body2">{title}</Typography>
+        <Typography
+          variant="body2"
+          sx={{ wordBreak: "break-word" }}
+        >
+          {title}
+        </Typography>
 
         <Box sx={{ display: "flex", gap: 1, mt: isHorizontal ? 0.5 : 1.5 }}>
           <Typography
@@ -106,7 +115,7 @@ function ProductCard({
           )}
         </Box>
       </CardContent>
-    </Card>
+    </Box>
   );
 }
 
