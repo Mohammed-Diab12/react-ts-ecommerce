@@ -46,7 +46,14 @@ function Sidebar() {
       </IconButton>
 
       <Drawer anchor="left" open={open} onClose={handleToggle}>
-        <Box sx={{ width: 280, display: "flex", flexDirection: "column", height: "100%" }}>
+        <Box
+          sx={{
+            width: 280,
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+          }}
+        >
           {/* Logo row */}
           <Box
             sx={{
@@ -57,7 +64,10 @@ function Sidebar() {
               py: 1.5,
             }}
           >
-            <Typography variant="h6" sx={{ fontWeight: 600, color: "brand.main" }}>
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: 600, color: "brand.main" }}
+            >
               CAMARO
             </Typography>
             <IconButton aria-label="Close menu" onClick={handleToggle}>
@@ -70,7 +80,10 @@ function Sidebar() {
           {/* Nav links, stacked */}
           <List sx={{ py: 0 }}>
             {pages.map((page) => (
-              <ListItemButton key={page.name} onClick={() => handleNavigate(page.path)}>
+              <ListItemButton
+                key={page.name}
+                onClick={() => handleNavigate(page.path)}
+              >
                 <ListItemText primary={page.name} />
               </ListItemButton>
             ))}
