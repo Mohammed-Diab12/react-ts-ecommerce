@@ -40,6 +40,9 @@ function ProductCard({
         p: isHorizontal ? 1 : 0,
         gap: isHorizontal ? 2 : 0,
         border: "none",
+        width: "100%",
+        height: "100%",
+        boxSizing: "border-box",
       }}
     >
       {hasDiscount && (
