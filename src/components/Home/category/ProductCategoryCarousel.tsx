@@ -22,7 +22,8 @@ const CAROUSEL_BREAKPOINTS = {
   0: { slidesPerView: 2, slidesPerGroup: 2 },
   600: { slidesPerView: 3, slidesPerGroup: 3 },
   900: { slidesPerView: 4, slidesPerGroup: 4 },
-  1200: { slidesPerView: 6, slidesPerGroup: 6 },
+
+  1200: { slidesPerView: 5, slidesPerGroup: 5 },
 };
 
 const PAGINATION_CONFIG = { clickable: true };
@@ -96,6 +97,8 @@ function ProductCategoryCarousel({
         role="region"
         aria-label={`${categoryTitle} products`}
         sx={{
+          mt: 5,
+
           pb: 4,
           "& .swiper-pagination-bullet": {
             backgroundColor: "content.main",
