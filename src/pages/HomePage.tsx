@@ -26,7 +26,7 @@ function HomePage() {
           flexDirection: { xs: "column", md: "row" },
           width: "100%",
           alignItems: "center",
-          gap:1
+          gap: 1,
         }}
       >
         <Box sx={{ flex: 1, minWidth: 0, width: "100%" }}>

@@ -1,14 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import {
-  Box,
-  Typography,
-  CircularProgress,
-} from "@mui/material";
+
+import { Box, Typography, CircularProgress } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Grid } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/grid";
+
 import { getProductsByCategories } from "../../../services/productService";
 import ProductCard from "../ProductCard";
 import type { Product } from "../../../types";
@@ -22,10 +20,26 @@ const PAGINATION_CONFIG = { clickable: true };
 
 function getCarouselBreakpoints(rows: number) {
   return {
-    0: { slidesPerView: 2, slidesPerGroup: 2, grid: { rows, fill: "row" as const } },
-    600: { slidesPerView: 3, slidesPerGroup: 3, grid: { rows, fill: "row" as const } },
-    900: { slidesPerView: 4, slidesPerGroup: 4, grid: { rows, fill: "row" as const } },
-    1200: { slidesPerView: 5, slidesPerGroup: 5, grid: { rows, fill: "row" as const } },
+    0: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+      grid: { rows, fill: "row" as const },
+    },
+    600: {
+      slidesPerView: 3,
+      slidesPerGroup: 3,
+      grid: { rows, fill: "row" as const },
+    },
+    900: {
+      slidesPerView: 4,
+      slidesPerGroup: 4,
+      grid: { rows, fill: "row" as const },
+    },
+    1200: {
+      slidesPerView: 5,
+      slidesPerGroup: 5,
+      grid: { rows, fill: "row" as const },
+    },
   };
 }
 
