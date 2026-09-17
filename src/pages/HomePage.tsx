@@ -23,32 +23,32 @@ function HomePage() {
         categoryTitle="Smartphone & Tablet"
         categories={["Smartphone", "Tablet"]}
       />
- <Box
-  sx={{
-    display: "flex",
-    flexDirection: { xs: "column", md: "row" },
-    width: "100%",
-    alignItems: "center",
-  }}
->
-  <Box sx={{ flex: 1, minWidth: 0, width: "100%" }}>
-    <AudioSoundCategory
-      categoryTitle="Audio & Sound"
-      categories={["Audio & Sound"]}
-    />
-  </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          width: "100%",
+          alignItems: "center",
+        }}
+      >
+        <Box sx={{ flex: 1, minWidth: 0, width: "100%" }}>
+          <AudioSoundCategory
+            categoryTitle="Audio & Sound"
+            categories={["Audio & Sound"]}
+          />
+        </Box>
 
-  <Box
-    component="img"
-    src={bluetoothSpeaker}
-    alt="Bluetooth Speaker"
-    sx={{
-      width: { xs: "70%", md: 250 },
-      maxWidth: 250,
-      objectFit: "contain",
-    }}
-  />
-</Box>
+        <Box
+          component="img"
+          src={bluetoothSpeaker}
+          alt="Bluetooth Speaker"
+          sx={{
+            width: { xs: "70%", md: 250 },
+            maxWidth: 250,
+            objectFit: "contain",
+          }}
+        />
+      </Box>
       <PromoBanner />
       <BrandStrip />
     </Container>

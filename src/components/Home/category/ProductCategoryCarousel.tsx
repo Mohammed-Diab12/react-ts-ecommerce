@@ -96,7 +96,8 @@ function ProductCategoryCarousel({
         role="region"
         aria-label={`${categoryTitle} products`}
         sx={{
-          mt:5,
+          mt: 5,
+
           pb: 4,
           "& .swiper-pagination-bullet": {
             backgroundColor: "content.main",
