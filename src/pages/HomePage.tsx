@@ -10,16 +10,6 @@ import { Container, Box } from "@mui/material";
 function HomePage() {
   return (
     <Container>
-      <h1 style={{ textAlign: "center" }}>HomePage</h1>
-      <ul>
-        <li>
-          <Link to={"/cart"}>Cart Page</Link>
-        </li>
-        <li>
-          <Link to="/products/1phXjx94qtgXg9UkNHtc">Product Page</Link>
-        </li>
-      </ul>
-
       <MobileDevicesCategory
         categoryTitle="Smartphone & Tablet"
         categories={["Smartphone", "Tablet"]}
