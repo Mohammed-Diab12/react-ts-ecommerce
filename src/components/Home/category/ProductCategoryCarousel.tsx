@@ -22,6 +22,7 @@ const CAROUSEL_BREAKPOINTS = {
   0: { slidesPerView: 2, slidesPerGroup: 2 },
   600: { slidesPerView: 3, slidesPerGroup: 3 },
   900: { slidesPerView: 4, slidesPerGroup: 4 },
+
   1200: { slidesPerView: 5, slidesPerGroup: 5 },
 };
 

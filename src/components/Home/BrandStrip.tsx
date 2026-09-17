@@ -13,32 +13,18 @@ function BrandStrip() {
         justifyContent: "space-between",
         flexWrap: "wrap",
         alignItems: "center",
+        backgroundColor: "white",
       }}
     >
       <Box>
-        <img
-          src={startUpSocks}
-          alt="Start Up Socks"
-          height={100}
-          width={100}
-        />
+        <img src={startUpSocks} alt="Start Up Socks" height={100} width={100} />
       </Box>
 
       <Box>
-        <img
-          src={swachhBharat}
-          alt="swachh Bharat"
-          height={100}
-          width={100}
-        />
+        <img src={swachhBharat} alt="swachh Bharat" height={100} width={100} />
       </Box>
       <Box>
-        <img
-          src={swatchLogo}
-          alt="Swatch"
-          height={100}
-          width={100}
-        />
+        <img src={swatchLogo} alt="Swatch" height={100} width={100} />
       </Box>
       <Box>
         <img
@@ -49,20 +35,10 @@ function BrandStrip() {
         />
       </Box>
       <Box>
-        <img
-          src={toshiba}
-          alt="Toshiba"
-          height={100}
-          width={100}
-        />
+        <img src={toshiba} alt="Toshiba" height={100} width={100} />
       </Box>
       <Box>
-        <img
-          src={yody}
-          alt="yody young and dynamic"
-          height={100}
-          width={100}
-        />
+        <img src={yody} alt="yody young and dynamic" height={100} width={100} />
       </Box>
     </Box>
   );

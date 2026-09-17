@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import MobileDevicesCategory from "../components/Home/category/ProductCategoryCarousel";
 import AudioSoundCategory from "../components/Home/category/ProductCategoryCarousel";
 import bluetoothSpeaker from "../../public/bluetoothSpeaker.jpg";
+
 import PromoBanner from "../components/Home/PromoBanner";
 import BrandStrip from "../components/Home/BrandStrip";
 import { Container, Box } from "@mui/material";
@@ -23,6 +24,7 @@ function HomePage() {
         categoryTitle="Smartphone & Tablet"
         categories={["Smartphone", "Tablet"]}
       />
+
       <Box
         sx={{
           display: "flex",
@@ -49,6 +51,7 @@ function HomePage() {
           }}
         />
       </Box>
+
       <PromoBanner />
       <BrandStrip />
     </Container>
